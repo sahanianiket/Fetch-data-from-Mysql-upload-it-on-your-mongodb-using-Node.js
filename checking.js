@@ -15,7 +15,7 @@ var pool = mysql.createConnection({
 pool.connect(function(err) {
     if (err) throw err;
     //Select all customers and return the result object:
-    pool.query("SELECT * FROM your_databasemname", function (err, result, fields) { //SELECT * FROM `tbl_tenders_client_archive` limit 100000
+    pool.query("SELECT * FROM your_databasemname", function (err, result, fields) {
       if (err) throw err;
       fetchdata=result;
       console.log(fetchdata.length);
