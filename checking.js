@@ -3,10 +3,10 @@ const { MongoClient } = require('mongodb');
 
 
 var pool = mysql.createConnection({
-    host: "185.15.210.108",
-    user: "user_crm",
-    password: "dM>2;iQvCUbO}ir@",
-    database: "tend_tenders",
+    host: "your host",
+    user: "your user",
+    password: "password",
+    database: "your database name",
     connectionLimit:10
   });
 
@@ -15,17 +15,18 @@ var pool = mysql.createConnection({
 pool.connect(function(err) {
     if (err) throw err;
     //Select all customers and return the result object:
-    pool.query("SELECT * FROM tbl_tenders_client_archive limit 1500000,1000000", function (err, result, fields) { //SELECT * FROM `tbl_tenders_client_archive` limit 100000
+    pool.query("SELECT * FROM your_databasemname", function (err, result, fields) { //SELECT * FROM `tbl_tenders_client_archive` limit 100000
       if (err) throw err;
       fetchdata=result;
       console.log(fetchdata.length);
       main();
     });
   });
+
 // mongodb part
 // Connection URL
 
-    const url =  'mongodb://admin:YMHddp03558@node135103-env-1628475.nl.realcloud.in/?authMechanism=DEFAULT';
+    const url =  'your mongodb url';
 const client = new MongoClient(url);
 
 // Database Name
@@ -42,30 +43,13 @@ const dbName = 'testing';
     
     const collection = db.collection('temp');
   
-  //   const findResult = await collection.findOne({});
-  // console.log('Found documents =>', findResult);
-  
-  
-//   var data=[fetchdata];
-//   console.log(data.length);
-
-  //  for(let i=0;i<fetchdata.length;i++){
-    // console.log("going to insert =>"+fetchdata[i]);
-    // // console.log(fetchdata.length);
-     
-
     const insertResult= await collection.insertMany(fetchdata);
 console.log('Inserted documents =>', fetchdata.length);
     
-    
-    
-    // console.log('Insert documents =>', insertResult);
-    // console.log(i);
-  //  } 
   return 'done.';
   
   }
-  // client.context.callbackWaitsForEmptyEventLoop = false;
+
   main()
     .then(console.log)
     .catch(console.error)
